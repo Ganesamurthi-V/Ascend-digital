@@ -1,4 +1,5 @@
 name: Sync Fork
+name: Sync Fork
 
 on:
   schedule:
@@ -13,7 +14,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Sync fork
-        uses: tgymnich/fork-sync@v2
+      - uses: actions/checkout@v4
+
+      - name: Sync upstream
+        uses: aormsby/Fork-Sync-With-Upstream-action@v3.4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          upstream_sync_repo: sathish2446/Ascend-digital
+          upstream_sync_branch: main
+          target_sync_branch: main
+          target_repo_token: ${{ secrets.GITHUB_TOKEN }}
